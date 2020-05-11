@@ -7,17 +7,15 @@ weatherForm.addEventListener("submit", (e) => {
   e.preventDefault();
   mes.innerHTML = "loading...";
   const location = address.value;
-  fetch(`http://localhost:3000/weather?address=${location}`).then(
-    (response) => {
-      response.json().then((data) => {
-        if (data.error) {
-          error.innerHTML = data.error;
-          mes.innerHTML = "";
-        } else {
-          mes.innerHTML = data.forecast;
-          error.innerHTML = "";
-        }
-      });
-    }
-  );
+  fetch(`/weather?address=${location}`).then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+        error.innerHTML = data.error;
+        mes.innerHTML = "";
+      } else {
+        mes.innerHTML = data.forecast;
+        error.innerHTML = "";
+      }
+    });
+  });
 });
